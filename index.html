@@ -1,0 +1,57 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+	<script src="html2canvas.js"></script>
+    <title>Test</title>
+    <style>
+        #panel{
+            height: 200px;
+            width: 200px;
+            background-color: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            position: absolute;
+            bottom: 150px;
+            left: 150px;
+        }
+        #main{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+        }
+        button{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,265px);
+            width: 500px;
+            padding: 5px;
+        }
+        canvas{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+        }
+    </style>
+</head>
+<body>
+    <div id="main">
+        <img src="test.png" height="500" width="500">
+        <div id="panel"></div>
+    </div>
+    <button onclick="capture()">Capture</button>
+    <script>
+        function capture() {
+            html2canvas(document.querySelector('#main')).then(canvas => {
+                document.body.innerHTML="";
+                document.body.appendChild(canvas);
+            });
+        }        
+    </script>
+</body>
+</html>
